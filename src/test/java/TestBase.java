@@ -22,7 +22,6 @@ public class TestBase {
 
     @After
     public void afterTest() {
-        driver.close();
         driver.quit();
         System.out.println("Browser was closed and driver was killed");
     }
