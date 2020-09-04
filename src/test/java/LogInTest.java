@@ -1,9 +1,6 @@
 import org.junit.Test;
 import page.objects.HomePage;
 
-import static configuration.Configuration.LOGIN;
-import static configuration.Configuration.PASSWORD;
-
 public class LogInTest extends TestBase {
 
     public static final String LOGIN_IMPROPER = "email";

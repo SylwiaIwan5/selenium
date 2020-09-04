@@ -3,9 +3,11 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static configuration.Configuration.ENV;
-
 public class TestBase {
+
+    public static final String ENV = "http://automationpractice.com/index.php";
+    public static final String LOGIN = "testemail@email.com";
+    public static final String PASSWORD = "free8952.";
 
     public WebDriver driver;
 

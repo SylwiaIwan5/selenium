@@ -1,8 +1,6 @@
 import org.junit.Test;
 import page.objects.HomePage;
 
-import static configuration.Configuration.LOGIN;
-
 public class ContactTest extends TestBase {
 
     public static final String SUBJECT_SELECT_OPTION = "Webmaster";

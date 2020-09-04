@@ -1,9 +1,6 @@
 import org.junit.Test;
 import page.objects.HomePage;
 
-import static configuration.Configuration.LOGIN;
-import static configuration.Configuration.PASSWORD;
-
 public class OrderTest extends TestBase {
 
     public static final String COMMUNICATION = "Your order on My Store is complete.";
