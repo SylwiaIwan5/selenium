@@ -28,12 +28,12 @@ public class BankWireOrderConfirmationPage {
         System.out.println("Opened bank wire order confirmation page");
     }
 
-    public BankWireOrderConfirmationPage assertCommunication(WebDriver driver, String communication) {
+    public BankWireOrderConfirmationPage assertCommunication(WebDriver driver, String expectedCommunication) {
         System.out.println("Checking if communication is proper");
         waitUntilElementIsVisible(driver, completeOrderCommunication);
-        String paragraphAlertText = completeOrderCommunication.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = completeOrderCommunication.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

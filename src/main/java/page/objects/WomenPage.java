@@ -107,23 +107,24 @@ public class WomenPage {
         System.out.println("Product was added to the cart");
         waitUntilElementIsVisible(driver, addedToCartPopupProductName);
         System.out.println("Checking if product name on popup is correct");
-        String popupProductName = addedToCartPopupProductName.getText();
-        assertEquals(expectedPopupProductName, popupProductName);
+        String actualPopupProductName = addedToCartPopupProductName.getText();
+        assertEquals(expectedPopupProductName, actualPopupProductName);
         System.out.println("Product name on popup is correct " + expectedPopupProductName);
         return this;
     }
 
-    public WomenPage assertWomenPageIsOpen(WebDriver driver, String websiteAddress, String expectedWomenPageHeaderText) {
+    public WomenPage assertWomenPageIsOpen(WebDriver driver, String expectedWebsiteAddress, String expectedWomenPageHeaderText) {
         System.out.println("Checking if website address is proper");
-        assertEquals(websiteAddress, driver.getCurrentUrl());
-        System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
+        String actualWebsiteAddress = driver.getCurrentUrl();
+        assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
+        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
         waitUntilElementIsVisible(driver, womenPageHeader);
         System.out.println("Checking if Women page header is visible");
         assertTrue(womenPageHeader.isDisplayed());
         System.out.println("Women page header is visible");
         System.out.println("Checking if Women page header text is correct");
-        String womenPageHeaderText = womenPageHeader.getText();
-        assertEquals(expectedWomenPageHeaderText, womenPageHeaderText);
+        String actualWomenPageHeaderText = womenPageHeader.getText();
+        assertEquals(expectedWomenPageHeaderText, actualWomenPageHeaderText);
         System.out.println("Women page header text is correct " + expectedWomenPageHeaderText);
         return this;
     }
@@ -133,8 +134,8 @@ public class WomenPage {
         assertTrue(cart.isEnabled());
         System.out.println("Cart is enabled");
         System.out.println("Checking if cart text is correct");
-        String cartText = cart.getText();
-        assertEquals(expectedCartText, cartText);
+        String actualCartText = cart.getText();
+        assertEquals(expectedCartText, actualCartText);
         System.out.println("Cart text is correct " + expectedCartText);
         return this;
     }

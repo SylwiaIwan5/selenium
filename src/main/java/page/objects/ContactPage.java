@@ -76,19 +76,19 @@ public class ContactPage {
         return this;
     }
 
-    public ContactPage assertContactSuccessCommunication(String communication) {
+    public ContactPage assertContactSuccessCommunication(String expectedCommunication) {
         System.out.println("Checking if contact alert is proper");
-        String alertText = successAlert.getText();
-        assertEquals(alertText, communication);
-        System.out.println("Contact success communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = successAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Contact success communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 
-    public ContactPage assertContactErrorCommunication(String communication) {
+    public ContactPage assertContactErrorCommunication(String expectedCommunication) {
         System.out.println("Checking if contact alert is proper");
-        String alertText = errorAlert.getText();
-        assertEquals(alertText, communication);
-        System.out.println("Contact error communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = errorAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Contact error communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

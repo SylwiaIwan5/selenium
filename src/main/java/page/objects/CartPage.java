@@ -55,31 +55,32 @@ public class CartPage {
         return new AuthenticationPage(driver);
     }
 
-    public CartPage assertCartIsOpen(WebDriver driver, String websiteAddress, String expectedCartHeaderText, String expectedProductNameInCart) {
+    public CartPage assertCartIsOpen(WebDriver driver, String expectedWebsiteAddress, String expectedCartHeaderText, String expectedProductNameInCart) {
         System.out.println("Checking if website address is proper");
-        assertEquals(websiteAddress, driver.getCurrentUrl());
-        System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
+        String actualWebsiteAddress = driver.getCurrentUrl();
+        assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
+        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
         waitUntilElementIsVisible(driver, shoppingCartHeader);
         System.out.println("Checking if Cart header is visible");
         assertTrue(shoppingCartHeader.isDisplayed());
         System.out.println("Cart header is visible");
         System.out.println("Checking if Cart header text is correct");
-        String cartHeaderText = shoppingCartHeader.getText();
-        assertEquals(expectedCartHeaderText, cartHeaderText);
+        String actualCartHeaderText = shoppingCartHeader.getText();
+        assertEquals(expectedCartHeaderText, actualCartHeaderText);
         System.out.println("Women page header text is correct " + expectedCartHeaderText);
         System.out.println("Checking if product name in cart is correct");
-        String popupProductName = addedToCartProductName.getText();
-        assertEquals(expectedProductNameInCart, popupProductName);
+        String actualPopupProductName = addedToCartProductName.getText();
+        assertEquals(expectedProductNameInCart, actualPopupProductName);
         System.out.println("Product name in cart is correct " + expectedProductNameInCart);
         return this;
     }
 
-    public CartPage assertCartIsEmpty(WebDriver driver, String communication) {
+    public CartPage assertCartIsEmpty(WebDriver driver, String expectedCommunication) {
         System.out.println("Checking if communication is proper");
         waitUntilElementIsVisible(driver, communicationAlert);
-        String paragraphAlertText = communicationAlert.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = communicationAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

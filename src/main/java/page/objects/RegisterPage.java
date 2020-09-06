@@ -279,18 +279,18 @@ public class RegisterPage {
         waitUntilElementIsVisible(driver, mrTitleRadio);
 
         System.out.println("Checking if register header text is correct");
-        String registerHeaderText = registerHeader.getText();
-        assertEquals(expectedRegisterHeaderText, registerHeaderText);
+        String actualRegisterHeaderText = registerHeader.getText();
+        assertEquals(expectedRegisterHeaderText, actualRegisterHeaderText);
         System.out.println("Register header text is correct " + expectedRegisterHeaderText);
 
         System.out.println("Checking if personal information header text is correct");
-        String personalInformationHeaderText = personalInformationHeader.getText();
-        assertEquals(expectedPersonalInformationHeaderText, personalInformationHeaderText);
+        String actualPersonalInformationHeaderText = personalInformationHeader.getText();
+        assertEquals(expectedPersonalInformationHeaderText, actualPersonalInformationHeaderText);
         System.out.println("Personal information header text is correct " + expectedPersonalInformationHeaderText);
 
         System.out.println("Checking if address header text is correct");
-        String addressHeaderText = addressHeader.getText();
-        assertEquals(expectedAddressHeaderText, addressHeaderText);
+        String actualAddressHeaderText = addressHeader.getText();
+        assertEquals(expectedAddressHeaderText, actualAddressHeaderText);
         System.out.println("Address header text is correct " + expectedAddressHeaderText);
 
         System.out.println("Checking if all register inputs are visible");
@@ -331,16 +331,16 @@ public class RegisterPage {
         js.executeScript("arguments[0].scrollIntoView();", emailInput);
 
         System.out.println("Checking if register email is correct");
-        String emailInputValue = emailInput.getAttribute("value");
-        assertEquals(expectedRegisterEmail, emailInputValue);
+        String actualRegisterEmail = emailInput.getAttribute("value");
+        assertEquals(expectedRegisterEmail, actualRegisterEmail);
         System.out.println("Register email is correct " + expectedRegisterEmail);
 
         return this;
     }
 
-    public RegisterPage assertRegisterErrorCommunication(String communication) {
-        String alertText = alert.getText();
-        assertEquals(alertText, communication);
+    public RegisterPage assertRegisterErrorCommunication(String expectedCommunication) {
+        String actualCommunication = alert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
         return this;
     }
 

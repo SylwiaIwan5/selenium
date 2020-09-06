@@ -101,11 +101,11 @@ public class LogInPage {
         signInButton.click();
     }
 
-    public LogInPage assertLoginErrorCommunication(String communication) {
+    public LogInPage assertLoginErrorCommunication(String expectedCommunication) {
         System.out.println("Checking if login alert is proper");
-        String paragraphAlertText = loginAlert.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Login error communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = loginAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Login error communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 
@@ -115,12 +115,12 @@ public class LogInPage {
         return this;
     }
 
-    public LogInPage assertStartRegisterErrorCommunication(WebDriver driver, String communication) {
+    public LogInPage assertStartRegisterErrorCommunication(WebDriver driver, String expectedCommunication) {
         waitUntilElementIsVisible(driver, registerAlert);
         System.out.println("Checking if register alert is proper");
-        String paragraphAlertText = registerAlert.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Register error communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = registerAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Register error communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

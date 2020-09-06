@@ -120,18 +120,19 @@ public class HomePage {
         return this;
     }
 
-    public HomePage assertWebsiteAddress(String websiteAddress) {
+    public HomePage assertWebsiteAddress(String expectedWebsiteAddress) {
         System.out.println("Checking if website address is proper");
-        assertEquals(websiteAddress, driver.getCurrentUrl());
-        System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
+        String actualWebsiteAddress = driver.getCurrentUrl();
+        assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
+        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
         return this;
     }
 
     public HomePage assertButtonText(WebDriver driver, String expectedButtonText) {
         waitUntilElementIsVisible(driver, sliderButton);
         System.out.println("Checking if button text is correct");
-        String buttonText = sliderButton.getText();
-        assertEquals(expectedButtonText, buttonText);
+        String actualButtonText = sliderButton.getText();
+        assertEquals(expectedButtonText, actualButtonText);
         System.out.println("Button text is correct " + expectedButtonText);
         return this;
     }

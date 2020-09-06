@@ -113,23 +113,24 @@ public class TshirtsPage {
         System.out.println("Product was added to the cart");
         waitUntilElementIsVisible(driver, addedToCartPopupProductName);
         System.out.println("Checking if product name on popup is correct");
-        String popupProductName = addedToCartPopupProductName.getText();
-        assertEquals(expectedPopupProductName, popupProductName);
+        String actualPopupProductName = addedToCartPopupProductName.getText();
+        assertEquals(expectedPopupProductName, actualPopupProductName);
         System.out.println("Product name on popup is correct " + expectedPopupProductName);
         return this;
     }
 
-    public TshirtsPage assertTshirtsPageIsOpen(WebDriver driver, String websiteAddress, String expectedTshirtsPageHeaderText) {
+    public TshirtsPage assertTshirtsPageIsOpen(WebDriver driver, String expectedWebsiteAddress, String expectedTshirtsPageHeaderText) {
         System.out.println("Checking if website address is proper");
-        assertEquals(websiteAddress, driver.getCurrentUrl());
-        System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
+        String actualWebsiteAddress = driver.getCurrentUrl();
+        assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
+        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
         waitUntilElementIsVisible(driver, tshirtsPageHeader);
         System.out.println("Checking if Tshirts page header is visible");
         assertTrue(tshirtsPageHeader.isDisplayed());
         System.out.println("Tshirts page header is visible");
         System.out.println("Checking if Tshirts page header text is correct");
-        String tshirtsPageHeaderText = tshirtsPageHeader.getText();
-        assertEquals(expectedTshirtsPageHeaderText, tshirtsPageHeaderText);
+        String actualTshirtsPageHeaderText = tshirtsPageHeader.getText();
+        assertEquals(expectedTshirtsPageHeaderText, actualTshirtsPageHeaderText);
         System.out.println("Tshirts page header text is correct " + expectedTshirtsPageHeaderText);
         return this;
     }
@@ -139,8 +140,8 @@ public class TshirtsPage {
         assertTrue(cart.isEnabled());
         System.out.println("Cart is enabled");
         System.out.println("Checking if cart text is correct");
-        String cartText = cart.getText();
-        assertEquals(expectedCartText, cartText);
+        String actualCartText = cart.getText();
+        assertEquals(expectedCartText, actualCartText);
         System.out.println("Cart text is correct " + expectedCartText);
         return this;
     }

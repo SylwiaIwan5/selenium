@@ -25,18 +25,18 @@ public class SearchResultsPage {
     public SearchResultsPage assertProductName(WebDriver driver, String expectedProductName) {
         System.out.println("Checking if product name is correct");
         waitUntilElementIsVisible(driver, labelProductName);
-        String productNameText = labelProductName.getText();
-        assertEquals(expectedProductName, productNameText);
+        String actualProductName = labelProductName.getText();
+        assertEquals(expectedProductName, actualProductName);
         System.out.println("Product name was correct " + expectedProductName);
         return this;
     }
 
-    public SearchResultsPage assertCommunication(WebDriver driver, String communication) {
+    public SearchResultsPage assertCommunication(WebDriver driver, String expectedCommunication) {
         System.out.println("Checking if communication is proper");
         waitUntilElementIsVisible(driver, labelParagraphAlert);
-        String paragraphAlertText = labelParagraphAlert.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = labelParagraphAlert.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

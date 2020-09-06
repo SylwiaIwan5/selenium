@@ -28,12 +28,12 @@ public class CheckOrderConfirmationPage {
         System.out.println("Opened check order confirmation page");
     }
 
-    public CheckOrderConfirmationPage assertCommunication(WebDriver driver, String communication) {
+    public CheckOrderConfirmationPage assertCommunication(WebDriver driver, String expectedCommunication) {
         System.out.println("Checking if communication is proper");
         waitUntilElementIsVisible(driver, completeOrderCommunication);
-        String paragraphAlertText = completeOrderCommunication.getText();
-        assertEquals(paragraphAlertText, communication);
-        System.out.println("Communication is correct and sounds: '" + communication + "'");
+        String actualCommunication = completeOrderCommunication.getText();
+        assertEquals(expectedCommunication, actualCommunication);
+        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

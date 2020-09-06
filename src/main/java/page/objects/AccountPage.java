@@ -48,13 +48,14 @@ public class AccountPage {
         return new LogInPage(driver);
     }
 
-    public AccountPage assertAccountPageIsOpen(String websiteAddress, String expectedAccountHeaderText) {
+    public AccountPage assertAccountPageIsOpen(String expectedWebsiteAddress, String expectedAccountHeaderText) {
         System.out.println("Checking if website address is proper");
-        assertEquals(websiteAddress, driver.getCurrentUrl());
+        String actualWebsiteAddress = driver.getCurrentUrl();
+        assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
         System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
         System.out.println("Checking if account header text is correct");
-        String accountHeaderText = accountHeader.getText();
-        assertEquals(expectedAccountHeaderText, accountHeaderText);
+        String actualAccountHeaderText = accountHeader.getText();
+        assertEquals(expectedAccountHeaderText, actualAccountHeaderText);
         System.out.println("Account header text is correct " + expectedAccountHeaderText);
         System.out.println("Checking if all account sections are visible");
         assertTrue(orderHistoryAndDetailsSection.isDisplayed());
