@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Slf4j
 public class ShippingPage {
 
     @FindBy(className = "page-heading")
@@ -25,7 +27,7 @@ public class ShippingPage {
     public ShippingPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened shipping page");
+        log.info("Opened shipping page");
     }
 
     public ShippingPage tickCheckbox(WebDriver driver) {
@@ -33,7 +35,7 @@ public class ShippingPage {
         js.executeScript("arguments[0].scrollIntoView();", termsCheckbox);
         Actions actions = new Actions(driver);
         actions.moveToElement(termsCheckbox).click().perform();
-        System.out.println("Tick checkbox");
+        log.info("Tick checkbox");
         return new ShippingPage(driver);
     }
 
@@ -41,7 +43,7 @@ public class ShippingPage {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, proceedToCheckoutButton);
         actions.moveToElement(proceedToCheckoutButton).click().perform();
-        System.out.println("Clicked on proceed to checkout button");
+        log.info("Clicked on proceed to checkout button");
         return new ChoosePaymentPage(driver);
     }
 

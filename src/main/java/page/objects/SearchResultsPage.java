@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
+@Slf4j
 public class SearchResultsPage {
 
     @FindBy(css = "div[class='product-container'] a[class='product-name']")
@@ -19,24 +21,24 @@ public class SearchResultsPage {
 
     public SearchResultsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        System.out.println("Opened search results page");
+        log.info("Opened search results page");
     }
 
     public SearchResultsPage assertProductName(WebDriver driver, String expectedProductName) {
-        System.out.println("Checking if product name is correct");
+        log.info("Checking if product name is correct");
         waitUntilElementIsVisible(driver, labelProductName);
         String actualProductName = labelProductName.getText();
         assertEquals(expectedProductName, actualProductName);
-        System.out.println("Product name was correct " + expectedProductName);
+        log.info("Product name was correct " + expectedProductName);
         return this;
     }
 
     public SearchResultsPage assertCommunication(WebDriver driver, String expectedCommunication) {
-        System.out.println("Checking if communication is proper");
+        log.info("Checking if communication is proper");
         waitUntilElementIsVisible(driver, labelParagraphAlert);
         String actualCommunication = labelParagraphAlert.getText();
         assertEquals(expectedCommunication, actualCommunication);
-        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
+        log.info("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class RegisterPage {
 
     @FindBy(xpath = "//*[@id=\"center_column\"]/div/p")
@@ -106,42 +108,42 @@ public class RegisterPage {
 
     public RegisterPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        System.out.println("Opened register page");
+        log.info("Opened register page");
     }
 
     public RegisterPage chooseMrTitle(WebDriver driver) {
         waitUntilElementIsVisible(driver, firstNameInput);
         Actions actions = new Actions(driver);
         actions.moveToElement(mrTitleRadio).click().perform();
-        System.out.println("Mr title is chosen");
+        log.info("Mr title is chosen");
         return new RegisterPage(driver);
     }
 
     public RegisterPage chooseMrsTitle(WebDriver driver) {
         Actions actions = new Actions(driver);
         actions.moveToElement(mrsTitleRadio).click().perform();
-        System.out.println("Mrs title is chosen");
+        log.info("Mrs title is chosen");
         return new RegisterPage(driver);
     }
 
     public RegisterPage fillInFirstName(WebDriver driver, String firstName) {
         waitUntilElementIsVisible(driver, firstNameInput);
         firstNameInput.sendKeys(firstName);
-        System.out.println("First name is completed");
+        log.info("First name is completed");
         return this;
     }
 
     public RegisterPage fillInLastName(WebDriver driver, String lastName) {
         waitUntilElementIsVisible(driver, lastNameInput);
         lastNameInput.sendKeys(lastName);
-        System.out.println("Last name is completed");
+        log.info("Last name is completed");
         return this;
     }
 
     public RegisterPage fillInPassword(WebDriver driver, String password) {
         waitUntilElementIsVisible(driver, passwordInput);
         passwordInput.sendKeys(password);
-        System.out.println("Password is completed");
+        log.info("Password is completed");
         return this;
     }
 
@@ -150,21 +152,21 @@ public class RegisterPage {
         js.executeScript("arguments[0].scrollIntoView();", dateOfBirthDaysSelect);
         Select daysInDateOdBirthSelectOptions = new Select(dateOfBirthDaysSelect);
         daysInDateOdBirthSelectOptions.selectByVisibleText(dayInDateOfBirth);
-        System.out.println("Day in date of birth is selected");
+        log.info("Day in date of birth is selected");
         return this;
     }
 
     public RegisterPage selectMonthInDateOfBirth(String monthInDateOfBirth) {
         Select monthsInDateOdBirthSelectOptions = new Select(dateOfBirthMonthsSelect);
         monthsInDateOdBirthSelectOptions.selectByVisibleText(monthInDateOfBirth);
-        System.out.println("Month in date of birth is selected");
+        log.info("Month in date of birth is selected");
         return this;
     }
 
     public RegisterPage selectYearInDateOfBirth(String yearInDateOfBirth) {
         Select yearsInDateOdBirthSelectOptions = new Select(dateOfBirthYearsSelect);
         yearsInDateOdBirthSelectOptions.selectByVisibleText(yearInDateOfBirth);
-        System.out.println("Year in date of birth is selected");
+        log.info("Year in date of birth is selected");
         return this;
     }
 
@@ -173,77 +175,77 @@ public class RegisterPage {
         js.executeScript("arguments[0].scrollIntoView();", newsletterCheckbox);
         Actions actions = new Actions(driver);
         actions.moveToElement(newsletterCheckbox).click().perform();
-        System.out.println("Tick newsletter checkbox");
+        log.info("Tick newsletter checkbox");
         return new RegisterPage(driver);
     }
 
     public RegisterPage tickSpecialOffersCheckbox(WebDriver driver) {
         Actions actions = new Actions(driver);
         actions.moveToElement(specialOffersCheckbox).click().perform();
-        System.out.println("Tick special offers checkbox");
+        log.info("Tick special offers checkbox");
         return new RegisterPage(driver);
     }
 
     public RegisterPage fillInCompany(WebDriver driver, String company) {
         waitUntilElementIsVisible(driver, companyInput);
         companyInput.sendKeys(company);
-        System.out.println("Company is completed");
+        log.info("Company is completed");
         return this;
     }
 
     public RegisterPage fillInStreet(WebDriver driver, String street) {
         waitUntilElementIsVisible(driver, streetAddressInput);
         streetAddressInput.sendKeys(street);
-        System.out.println("Street is completed");
+        log.info("Street is completed");
         return this;
     }
 
     public RegisterPage fillInApartment(WebDriver driver, String apartment) {
         waitUntilElementIsVisible(driver, apartmentAddressInput);
         apartmentAddressInput.sendKeys(apartment);
-        System.out.println("Apartment is completed");
+        log.info("Apartment is completed");
         return this;
     }
 
     public RegisterPage fillInCity(WebDriver driver, String city) {
         waitUntilElementIsVisible(driver, cityAddressInput);
         cityAddressInput.sendKeys(city);
-        System.out.println("City is completed");
+        log.info("City is completed");
         return this;
     }
 
     public RegisterPage selectState(String state) {
         Select stateSelectOptions = new Select(stateAddressSelect);
         stateSelectOptions.selectByVisibleText(state);
-        System.out.println("State is completed");
+        log.info("State is completed");
         return this;
     }
 
     public RegisterPage fillInPostalCode(WebDriver driver, String postcode) {
         waitUntilElementIsVisible(driver, postcodeAddressInput);
         postcodeAddressInput.sendKeys(postcode);
-        System.out.println("Postcode is completed");
+        log.info("Postcode is completed");
         return this;
     }
 
     public RegisterPage fillInAdditionalInformation(WebDriver driver, String information) {
         waitUntilElementIsVisible(driver, additionalInformationInput);
         additionalInformationInput.sendKeys(information);
-        System.out.println("Additional information is completed");
+        log.info("Additional information is completed");
         return this;
     }
 
     public RegisterPage fillInHomePhoneNumber(WebDriver driver, String homePhoneNumber) {
         waitUntilElementIsVisible(driver, homePhoneInput);
         homePhoneInput.sendKeys(homePhoneNumber);
-        System.out.println("Home phone is completed");
+        log.info("Home phone is completed");
         return this;
     }
 
     public RegisterPage fillInMobilePhoneNumber(WebDriver driver, String mobilePhoneNumber) {
         waitUntilElementIsVisible(driver, mobilePhoneInput);
         mobilePhoneInput.sendKeys(mobilePhoneNumber);
-        System.out.println("Mobile phone is completed");
+        log.info("Mobile phone is completed");
         return this;
     }
 
@@ -251,7 +253,7 @@ public class RegisterPage {
         waitUntilElementIsVisible(driver, aliasAddressInput);
         aliasAddressInput.clear();
         aliasAddressInput.sendKeys(addressAlias);
-        System.out.println("Address alias is completed");
+        log.info("Address alias is completed");
         return this;
     }
 
@@ -262,7 +264,7 @@ public class RegisterPage {
 
     public AccountPage registerSuccess(WebDriver driver) {
         clickOnRegisterButton(driver);
-        System.out.println("Register button is clicked");
+        log.info("Register button is clicked");
         return new AccountPage(driver);
     }
 
@@ -274,26 +276,25 @@ public class RegisterPage {
     }
 
     public RegisterPage assertRegisterPageIsOpen(WebDriver driver, String expectedRegisterHeaderText,
-                                                 String expectedPersonalInformationHeaderText, String expectedAddressHeaderText)
-    {
+                                                 String expectedPersonalInformationHeaderText, String expectedAddressHeaderText) {
         waitUntilElementIsVisible(driver, mrTitleRadio);
 
-        System.out.println("Checking if register header text is correct");
+        log.info("Checking if register header text is correct");
         String actualRegisterHeaderText = registerHeader.getText();
         assertEquals(expectedRegisterHeaderText, actualRegisterHeaderText);
-        System.out.println("Register header text is correct " + expectedRegisterHeaderText);
+        log.info("Register header text is correct " + expectedRegisterHeaderText);
 
-        System.out.println("Checking if personal information header text is correct");
+        log.info("Checking if personal information header text is correct");
         String actualPersonalInformationHeaderText = personalInformationHeader.getText();
         assertEquals(expectedPersonalInformationHeaderText, actualPersonalInformationHeaderText);
-        System.out.println("Personal information header text is correct " + expectedPersonalInformationHeaderText);
+        log.info("Personal information header text is correct " + expectedPersonalInformationHeaderText);
 
-        System.out.println("Checking if address header text is correct");
+        log.info("Checking if address header text is correct");
         String actualAddressHeaderText = addressHeader.getText();
         assertEquals(expectedAddressHeaderText, actualAddressHeaderText);
-        System.out.println("Address header text is correct " + expectedAddressHeaderText);
+        log.info("Address header text is correct " + expectedAddressHeaderText);
 
-        System.out.println("Checking if all register inputs are visible");
+        log.info("Checking if all register inputs are visible");
         assertTrue(mrTitleRadio.isEnabled());
         assertTrue(mrsTitleRadio.isEnabled());
         assertTrue(firstNameInput.isDisplayed());
@@ -317,11 +318,11 @@ public class RegisterPage {
         assertTrue(homePhoneInput.isDisplayed());
         assertTrue(mobilePhoneInput.isDisplayed());
         assertTrue(aliasAddressInput.isDisplayed());
-        System.out.println("All register inputs are visible");
+        log.info("All register inputs are visible");
 
-        System.out.println("Checking if register button is enabled");
+        log.info("Checking if register button is enabled");
         assertTrue(registerButton.isEnabled());
-        System.out.println("Account register is enabled");
+        log.info("Account register is enabled");
         return this;
     }
 
@@ -330,10 +331,10 @@ public class RegisterPage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", emailInput);
 
-        System.out.println("Checking if register email is correct");
+        log.info("Checking if register email is correct");
         String actualRegisterEmail = emailInput.getAttribute("value");
         assertEquals(expectedRegisterEmail, actualRegisterEmail);
-        System.out.println("Register email is correct " + expectedRegisterEmail);
+        log.info("Register email is correct " + expectedRegisterEmail);
 
         return this;
     }

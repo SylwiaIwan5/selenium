@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class AccountPage {
 
     @FindBy(className = "page-heading")
@@ -39,37 +41,37 @@ public class AccountPage {
     public AccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened account page");
+        log.info("Opened account page");
     }
 
     public LogInPage clickOnLogoutButton() {
         logoutButton.click();
-        System.out.println("Clicked on logout button");
+        log.info("Clicked on logout button");
         return new LogInPage(driver);
     }
 
     public AccountPage assertAccountPageIsOpen(String expectedWebsiteAddress, String expectedAccountHeaderText) {
-        System.out.println("Checking if website address is proper");
+        log.info("Checking if website address is proper");
         String actualWebsiteAddress = driver.getCurrentUrl();
         assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
-        System.out.println("Website address: '" + driver.getCurrentUrl() + " is proper");
-        System.out.println("Checking if account header text is correct");
+        log.info("Website address: '" + driver.getCurrentUrl() + " is proper");
+        log.info("Checking if account header text is correct");
         String actualAccountHeaderText = accountHeader.getText();
         assertEquals(expectedAccountHeaderText, actualAccountHeaderText);
-        System.out.println("Account header text is correct " + expectedAccountHeaderText);
-        System.out.println("Checking if all account sections are visible");
+        log.info("Account header text is correct " + expectedAccountHeaderText);
+        log.info("Checking if all account sections are visible");
         assertTrue(orderHistoryAndDetailsSection.isDisplayed());
         assertTrue(creditSlipsSection.isDisplayed());
         assertTrue(addressesSection.isDisplayed());
         assertTrue(personalInformationSection.isDisplayed());
         assertTrue(wishlistsSection.isDisplayed());
-        System.out.println("All account sections are visible");
-        System.out.println("Checking if account button is enabled");
+        log.info("All account sections are visible");
+        log.info("Checking if account button is enabled");
         assertTrue(accountButton.isEnabled());
-        System.out.println("Account button is enabled");
-        System.out.println("Checking if sign out button is enabled");
+        log.info("Account button is enabled");
+        log.info("Checking if sign out button is enabled");
         assertTrue(logoutButton.isEnabled());
-        System.out.println("Log out button is enabled");
+        log.info("Log out button is enabled");
         return this;
     }
 

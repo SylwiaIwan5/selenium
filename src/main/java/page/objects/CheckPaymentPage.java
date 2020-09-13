@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+@Slf4j
 public class CheckPaymentPage {
 
     @FindBy(className = "navigation_page")
@@ -20,7 +22,7 @@ public class CheckPaymentPage {
     public CheckPaymentPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened check payment page");
+        log.info("Opened check payment page");
     }
 
     public CheckOrderConfirmationPage clickOnConfirmOrderButton(WebDriver driver) {
@@ -28,7 +30,7 @@ public class CheckPaymentPage {
         js.executeScript("arguments[0].scrollIntoView();", confirmOrderButton);
         Actions actions = new Actions(driver);
         actions.moveToElement(confirmOrderButton).click().perform();
-        System.out.println("Clicked on confirm order button");
+        log.info("Clicked on confirm order button");
         return new CheckOrderConfirmationPage(driver);
     }
 

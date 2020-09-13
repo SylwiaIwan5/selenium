@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Slf4j
 public class BankWirePaymentPage {
 
     @FindBy(className = "navigation_page")
@@ -22,7 +24,7 @@ public class BankWirePaymentPage {
     public BankWirePaymentPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened bank wire payment page");
+        log.info("Opened bank wire payment page");
     }
 
     public BankWireOrderConfirmationPage clickOnConfirmOrderButton(WebDriver driver) {
@@ -31,7 +33,7 @@ public class BankWirePaymentPage {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, confirmOrderButton);
         actions.moveToElement(confirmOrderButton).click().perform();
-        System.out.println("Clicked on confirm order button");
+        log.info("Clicked on confirm order button");
         return new BankWireOrderConfirmationPage(driver);
     }
 

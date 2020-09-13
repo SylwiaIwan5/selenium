@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class WomenPage {
 
     @FindBy(xpath = "//a[@title = \"View my shopping cart\"]")
@@ -46,7 +48,7 @@ public class WomenPage {
     public WomenPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened Women page");
+        log.info("Opened Women page");
     }
 
     public WomenPage chooseProduct() {
@@ -66,7 +68,7 @@ public class WomenPage {
     }
 
     public WomenPage addProductToCart() {
-        System.out.println("Adding product to the cart");
+        log.info("Adding product to the cart");
         Actions actions = new Actions(driver);
         actions.moveToElement(addToCartButton).click().perform();
         return this;
@@ -75,7 +77,7 @@ public class WomenPage {
     public WomenPage switchToPopup() {
         String windowHandle = driver.getWindowHandle();
         driver.switchTo().window(windowHandle);
-        System.out.println("Switch to popup");
+        log.info("Switch to popup");
         return this;
     }
 
@@ -83,7 +85,7 @@ public class WomenPage {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, continueShoppingButton);
         actions.moveToElement(continueShoppingButton).click().perform();
-        System.out.println("Clicked on continue shopping button");
+        log.info("Clicked on continue shopping button");
         return this;
     }
 
@@ -91,52 +93,52 @@ public class WomenPage {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, proceedToCheckoutButton);
         actions.moveToElement(proceedToCheckoutButton).click().perform();
-        System.out.println("Clicked on proceed to checkout button");
+        log.info("Clicked on proceed to checkout button");
         return new CartPage(driver);
     }
 
     public CartPage goToCart() {
         cart.click();
-        System.out.println("Clicked on Cart");
+        log.info("Clicked on Cart");
         return new CartPage(driver);
     }
 
     public WomenPage assertPopupIsDisplayed(WebDriver driver, String expectedPopupProductName) {
-        System.out.println("Checking if added to cart popup is displayed");
+        log.info("Checking if added to cart popup is displayed");
         assertTrue(addedToCartPopup.isDisplayed());
-        System.out.println("Product was added to the cart");
+        log.info("Product was added to the cart");
         waitUntilElementIsVisible(driver, addedToCartPopupProductName);
-        System.out.println("Checking if product name on popup is correct");
+        log.info("Checking if product name on popup is correct");
         String actualPopupProductName = addedToCartPopupProductName.getText();
         assertEquals(expectedPopupProductName, actualPopupProductName);
-        System.out.println("Product name on popup is correct " + expectedPopupProductName);
+        log.info("Product name on popup is correct " + expectedPopupProductName);
         return this;
     }
 
     public WomenPage assertWomenPageIsOpen(WebDriver driver, String expectedWebsiteAddress, String expectedWomenPageHeaderText) {
-        System.out.println("Checking if website address is proper");
+        log.info("Checking if website address is proper");
         String actualWebsiteAddress = driver.getCurrentUrl();
         assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
-        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
+        log.info("Website address: '" + actualWebsiteAddress + " is proper");
         waitUntilElementIsVisible(driver, womenPageHeader);
-        System.out.println("Checking if Women page header is visible");
+        log.info("Checking if Women page header is visible");
         assertTrue(womenPageHeader.isDisplayed());
-        System.out.println("Women page header is visible");
-        System.out.println("Checking if Women page header text is correct");
+        log.info("Women page header is visible");
+        log.info("Checking if Women page header text is correct");
         String actualWomenPageHeaderText = womenPageHeader.getText();
         assertEquals(expectedWomenPageHeaderText, actualWomenPageHeaderText);
-        System.out.println("Women page header text is correct " + expectedWomenPageHeaderText);
+        log.info("Women page header text is correct " + expectedWomenPageHeaderText);
         return this;
     }
 
     public WomenPage assertCartIsVisible(String expectedCartText) {
-        System.out.println("Checking if cart is enabled");
+        log.info("Checking if cart is enabled");
         assertTrue(cart.isEnabled());
-        System.out.println("Cart is enabled");
-        System.out.println("Checking if cart text is correct");
+        log.info("Cart is enabled");
+        log.info("Checking if cart text is correct");
         String actualCartText = cart.getText();
         assertEquals(expectedCartText, actualCartText);
-        System.out.println("Cart text is correct " + expectedCartText);
+        log.info("Cart text is correct " + expectedCartText);
         return this;
     }
 

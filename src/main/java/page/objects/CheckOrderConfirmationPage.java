@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
+@Slf4j
 public class CheckOrderConfirmationPage {
 
     @FindBy(className = "navigation_page")
@@ -25,15 +27,15 @@ public class CheckOrderConfirmationPage {
     public CheckOrderConfirmationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened check order confirmation page");
+        log.info("Opened check order confirmation page");
     }
 
     public CheckOrderConfirmationPage assertCommunication(WebDriver driver, String expectedCommunication) {
-        System.out.println("Checking if communication is proper");
+        log.info("Checking if communication is proper");
         waitUntilElementIsVisible(driver, completeOrderCommunication);
         String actualCommunication = completeOrderCommunication.getText();
         assertEquals(expectedCommunication, actualCommunication);
-        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
+        log.info("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

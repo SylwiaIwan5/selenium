@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Slf4j
 public class AuthenticationPage {
 
     @FindBy(className = "page-heading")
@@ -26,7 +28,7 @@ public class AuthenticationPage {
     public AuthenticationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened authentication page");
+        log.info("Opened authentication page");
     }
 
     public OrderAddressesPage signInSuccess(WebDriver driver, String loginEmail, String password) {
@@ -35,13 +37,13 @@ public class AuthenticationPage {
     }
 
     public void signIn(WebDriver driver, String loginEmail, String password) {
-        System.out.println("Start logging...");
+        log.info("Start logging...");
         waitUntilElementIsVisible(driver, inputEmail);
-        System.out.println("Typing in email...");
+        log.info("Typing in email...");
         inputEmail.sendKeys(loginEmail);
-        System.out.println("Typing in password...");
+        log.info("Typing in password...");
         inputPassword.sendKeys(password);
-        System.out.println("Credentials was typed");
+        log.info("Credentials was typed");
         signInButton.click();
     }
 

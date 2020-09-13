@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,7 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class LogInPage {
 
     @FindBy(xpath = "//div[@id=\"create_account_error\"]/ol[1]/li[1]")
@@ -37,7 +39,7 @@ public class LogInPage {
 
     public LogInPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        System.out.println("Opened log in page");
+        log.info("Opened log in page");
     }
 
     public LogInPage startRegisterWithErrors(WebDriver driver, String email) {
@@ -69,7 +71,7 @@ public class LogInPage {
     }
 
     public void startRegister(WebDriver driver, String email) {
-        System.out.println("Start register...");
+        log.info("Start register...");
         waitUntilElementIsVisible(driver, inputRegisterEmail);
         inputRegisterEmail.sendKeys(email);
         clickOnCreateAccountButton(driver);
@@ -91,36 +93,36 @@ public class LogInPage {
     }
 
     public void signIn(WebDriver driver, String loginEmail, String password) {
-        System.out.println("Start logging...");
+        log.info("Start logging...");
         waitUntilElementIsVisible(driver, inputEmail);
-        System.out.println("Typing in email...");
+        log.info("Typing in email...");
         inputEmail.sendKeys(loginEmail);
-        System.out.println("Typing in password...");
+        log.info("Typing in password...");
         inputPassword.sendKeys(password);
-        System.out.println("Credentials was typed");
+        log.info("Credentials was typed");
         signInButton.click();
     }
 
     public LogInPage assertLoginErrorCommunication(String expectedCommunication) {
-        System.out.println("Checking if login alert is proper");
+        log.info("Checking if login alert is proper");
         String actualCommunication = loginAlert.getText();
         assertEquals(expectedCommunication, actualCommunication);
-        System.out.println("Login error communication is correct and sounds: '" + expectedCommunication + "'");
+        log.info("Login error communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 
     public LogInPage assertLogout() {
-        System.out.println("Checking if sign in button is enabled");
+        log.info("Checking if sign in button is enabled");
         assertTrue(signInButton.isEnabled());
         return this;
     }
 
     public LogInPage assertStartRegisterErrorCommunication(WebDriver driver, String expectedCommunication) {
         waitUntilElementIsVisible(driver, registerAlert);
-        System.out.println("Checking if register alert is proper");
+        log.info("Checking if register alert is proper");
         String actualCommunication = registerAlert.getText();
         assertEquals(expectedCommunication, actualCommunication);
-        System.out.println("Register error communication is correct and sounds: '" + expectedCommunication + "'");
+        log.info("Register error communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 

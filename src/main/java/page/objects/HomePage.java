@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
+@Slf4j
 public class HomePage {
 
     @FindBy(id = "contact-link")
@@ -49,91 +51,91 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened home page");
+        log.info("Opened home page");
     }
 
     public ContactPage clickOnContactIcon() {
         contactUsButton.click();
-        System.out.println("Clicked on button Contact us");
+        log.info("Clicked on button Contact us");
         return new ContactPage(driver);
     }
 
     public LogInPage clickOnSignInIcon() {
         waitUntilElementIsVisible(driver, signInButton);
         signInButton.click();
-        System.out.println("Clicked on button Sign in");
+        log.info("Clicked on button Sign in");
         return new LogInPage(driver);
     }
 
     public HomePage typeIntoSearchQuery(String productName) {
         textFieldSearch.sendKeys(productName);
-        System.out.println("Typed into field Search Query " + productName);
+        log.info("Typed into field Search Query " + productName);
         return this;
     }
 
     public SearchResultsPage clickOnSearchIcon() {
         searchButton.click();
-        System.out.println("Clicked on button Search");
+        log.info("Clicked on button Search");
         return new SearchResultsPage(driver);
     }
 
     public WomenPage clickOnTopMenuWomenOption() {
         topMenuWomenOption.click();
-        System.out.println("Clicked on top menu Women option");
+        log.info("Clicked on top menu Women option");
         return new WomenPage(driver);
     }
 
     public DressesPage clickOnTopMenuDressesOption() {
         topMenuDressesOption.click();
-        System.out.println("Clicked on top menu Dresses option");
+        log.info("Clicked on top menu Dresses option");
         return new DressesPage(driver);
     }
 
     public TshirtsPage clickOnTopMenuTshirtsOption() {
         topMenuTshirtsOption.click();
-        System.out.println("Clicked on top menu T-shirts option");
+        log.info("Clicked on top menu T-shirts option");
         return new TshirtsPage(driver);
     }
 
     public HomePage clickOnMainSlider() {
         mainSlider.click();
-        System.out.println("Clicked on main slider");
+        log.info("Clicked on main slider");
         return this;
     }
 
     public HomePage clickOnSliderButton(WebDriver driver) {
         waitUntilElementIsVisible(driver, sliderButton);
         sliderButton.click();
-        System.out.println("Clicked on slider button");
+        log.info("Clicked on slider button");
         return this;
     }
 
     public HomePage clickOnTopSlider() {
         topSlider.click();
-        System.out.println("Clicked on top slider");
+        log.info("Clicked on top slider");
         return this;
     }
 
     public HomePage clickOnBottomSlider() {
         bottomSlider.click();
-        System.out.println("Clicked on bottom slider");
+        log.info("Clicked on bottom slider");
         return this;
     }
 
     public HomePage assertWebsiteAddress(String expectedWebsiteAddress) {
-        System.out.println("Checking if website address is proper");
+        log.info("Checking if website address is proper");
         String actualWebsiteAddress = driver.getCurrentUrl();
         assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
-        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
+        log.info("Website address: '" + actualWebsiteAddress + " is proper");
         return this;
     }
 
     public HomePage assertButtonText(WebDriver driver, String expectedButtonText) {
         waitUntilElementIsVisible(driver, sliderButton);
-        System.out.println("Checking if button text is correct");
+        log.info("Checking if button text is correct");
         String actualButtonText = sliderButton.getText();
         assertEquals(expectedButtonText, actualButtonText);
-        System.out.println("Button text is correct " + expectedButtonText);
+        log.info("Button text is correct " + expectedButtonText);
         return this;
     }
 

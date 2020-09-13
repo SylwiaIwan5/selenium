@@ -1,5 +1,6 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class CartPage {
 
     @FindBy(className = "navigation_page")
@@ -36,14 +38,14 @@ public class CartPage {
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        System.out.println("Opened cart page");
+        log.info("Opened cart page");
     }
 
     public CartPage clickOnDeleteIcon(WebDriver driver) {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, deleteIcon);
         actions.moveToElement(deleteIcon).click().perform();
-        System.out.println("Clicked on delete icon");
+        log.info("Clicked on delete icon");
         return new CartPage(driver);
     }
 
@@ -51,36 +53,36 @@ public class CartPage {
         Actions actions = new Actions(driver);
         waitUntilElementIsVisible(driver, proceedToCheckoutButton);
         actions.moveToElement(proceedToCheckoutButton).click().perform();
-        System.out.println("Clicked on proceed to checkout button");
+        log.info("Clicked on proceed to checkout button");
         return new AuthenticationPage(driver);
     }
 
     public CartPage assertCartIsOpen(WebDriver driver, String expectedWebsiteAddress, String expectedCartHeaderText, String expectedProductNameInCart) {
-        System.out.println("Checking if website address is proper");
+        log.info("Checking if website address is proper");
         String actualWebsiteAddress = driver.getCurrentUrl();
         assertEquals(expectedWebsiteAddress, actualWebsiteAddress);
-        System.out.println("Website address: '" + actualWebsiteAddress + " is proper");
+        log.info("Website address: '" + actualWebsiteAddress + " is proper");
         waitUntilElementIsVisible(driver, shoppingCartHeader);
-        System.out.println("Checking if Cart header is visible");
+        log.info("Checking if Cart header is visible");
         assertTrue(shoppingCartHeader.isDisplayed());
-        System.out.println("Cart header is visible");
-        System.out.println("Checking if Cart header text is correct");
+        log.info("Cart header is visible");
+        log.info("Checking if Cart header text is correct");
         String actualCartHeaderText = shoppingCartHeader.getText();
         assertEquals(expectedCartHeaderText, actualCartHeaderText);
-        System.out.println("Women page header text is correct " + expectedCartHeaderText);
-        System.out.println("Checking if product name in cart is correct");
+        log.info("Women page header text is correct " + expectedCartHeaderText);
+        log.info("Checking if product name in cart is correct");
         String actualPopupProductName = addedToCartProductName.getText();
         assertEquals(expectedProductNameInCart, actualPopupProductName);
-        System.out.println("Product name in cart is correct " + expectedProductNameInCart);
+        log.info("Product name in cart is correct " + expectedProductNameInCart);
         return this;
     }
 
     public CartPage assertCartIsEmpty(WebDriver driver, String expectedCommunication) {
-        System.out.println("Checking if communication is proper");
+        log.info("Checking if communication is proper");
         waitUntilElementIsVisible(driver, communicationAlert);
         String actualCommunication = communicationAlert.getText();
         assertEquals(expectedCommunication, actualCommunication);
-        System.out.println("Communication is correct and sounds: '" + expectedCommunication + "'");
+        log.info("Communication is correct and sounds: '" + expectedCommunication + "'");
         return this;
     }
 
