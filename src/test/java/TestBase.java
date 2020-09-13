@@ -1,8 +1,12 @@
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
+@Slf4j
 public class TestBase {
 
     public static final String ENV = "http://automationpractice.com/index.php";
@@ -16,14 +20,15 @@ public class TestBase {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.navigate().to(ENV);
-        System.out.println("Navigating to page " + ENV);
+        log.info("Navigating to page " + ENV);
     }
 
     @After
     public void afterTest() {
         driver.quit();
-        System.out.println("Browser was closed and driver was killed");
+        log.info("Browser was closed and driver was killed");
     }
 
 }
